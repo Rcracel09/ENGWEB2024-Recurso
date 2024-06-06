@@ -1,0 +1,15 @@
+1. Através do comando `db.livros.countDocuments({ "title": { "$regex": "Love", "$options": "i" 
+} })` consegui verificar que existem 366 registos na base de dados em que no titulo
+aparece a palavra 'Love'.
+
+2. Através do comando `db.livros.find({ "author": { "$regex": /Austen/i } }, { "title": 1, "_id": 0 }).sort({ "title": 1 })` 
+consegui verificar os títulos dos livros, em ordem alfabética, em que um dos autores tem apelido Austen.
+
+3. Através do comando `db.livros.distinct("author").sort()` consegui verificar a lista de autores ordenada alfabeticamente e sem repetições.
+    
+4. Através do comando `db.livros.aggregate([{ "$unwind": "$genres" },{ "$group": { "_id": "$genres", "count": { "$sum": 1 } } },{ "$sort": { "_id": 1 } }])` 
+consegui verificar a distribuição de livros por género (quantos livros tem cada género)!
+
+5. Através do comando `db.livros.find({ "characters": "Sirius Black" }, { "title": 1, "isbn": 1, "_id": 0 }).sort({ "title": 1 })` 
+consegui verificar os títulos dos livros e respetivos isbn, em ordem alfabética de título, em que um dos personagens é Sirius Black!
+
